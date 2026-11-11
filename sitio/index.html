@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta name="robots" content="noindex,nofollow">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>The Cave – Propuesta de rediseño</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* Paleta editable: cambia estos 6 valores por los reales de la marca */
+:root{--bg:#f6f2ea;--surface:#fff;--line:#ddd5c8;--text:#1b1814;--muted:#6b645a;--accent:#c9a15a;--accent-t:#8a6420;--accent-ink:#17120a;--ok:#2f7d46;--hdr:rgba(246,242,234,.92);--ov1:rgba(246,242,234,.65);--ov2:rgba(246,242,234,.4);
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);color-scheme:light}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0e0d0c;--surface:#181614;--line:#2b2825;--text:#f1ece4;--muted:#a09a90;--accent-t:#c9a15a;--ok:#7fbf8e;--hdr:rgba(14,13,12,.9);--ov1:rgba(14,13,12,.6);--ov2:rgba(14,13,12,.35);color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0e0d0c;--surface:#181614;--line:#2b2825;--text:#f1ece4;--muted:#a09a90;--accent-t:#c9a15a;--ok:#7fbf8e;--hdr:rgba(14,13,12,.9);--ov1:rgba(14,13,12,.6);--ov2:rgba(14,13,12,.35);color-scheme:dark}
+.actions{display:flex;gap:10px;align-items:center}
+.ib{width:40px;height:40px;border:1px solid var(--line);background:transparent;border-radius:4px;cursor:pointer;display:grid;place-items:center;font-size:18px;line-height:1}
+.ib:hover{border-color:var(--muted)}.menu{display:none}
+html{scroll-behavior:smooth;scroll-padding-top:80px}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;background:var(--bg);color:var(--text);font:400 16px/1.6 Barlow,system-ui,sans-serif}
+h1,h2,h3{font-family:'Barlow Condensed','Arial Narrow',sans-serif;font-weight:700;line-height:1;margin:0;letter-spacing:.01em}
+a{color:inherit}
+.wrap{max-width:1120px;margin:0 auto;padding:0 20px}
+section{padding:88px 0}
+h2{font-size:clamp(34px,5vw,52px);margin-bottom:12px}
+.lead{color:var(--muted);max-width:52ch;margin:0 0 40px}
+button,input,select{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0 26px;background:var(--accent);color:var(--accent-ink);font-weight:600;border:0;border-radius:4px;text-decoration:none;cursor:pointer}
+.btn:hover{filter:brightness(1.08)}
+.btn.ghost{background:transparent;color:var(--text);border:1px solid var(--line)}
+.btn[disabled]{opacity:.35;cursor:not-allowed}
+/* nav */
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--hdr);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--hdr);z-index:30}
+.nav{display:flex;align-items:center;justify-content:space-between;height:68px}
+.logo{font:700 26px 'Barlow Condensed',sans-serif;letter-spacing:.14em;text-decoration:none}
+.nav ul{display:flex;gap:28px;list-style:none;margin:0;padding:0}
+.nav ul a{text-decoration:none;color:var(--muted);font-size:15px}.nav ul a:hover{color:var(--text)}
+.nav .btn{min-height:40px;padding:0 20px}
+/* hero */
+.hero{--hero-img:none;padding:72px 0 96px;position:relative;overflow:hidden;min-height:680px;display:flex;align-items:center;background:linear-gradient(90deg,var(--bg) 15%,var(--ov1) 70%,var(--ov2)),linear-gradient(0deg,var(--bg),transparent 30%),var(--hero-img),radial-gradient(ellipse at 78% 35%,rgba(201,161,90,.3),transparent 55%),repeating-linear-gradient(90deg,rgba(255,255,255,.02) 0 2px,transparent 2px 64px),var(--bg);background-size:cover;background-position:center}
+.hero .wrap{width:100%}
+.hero h1{font-size:clamp(56px,10vw,128px);text-transform:uppercase}
+.hero p{font-size:19px;color:var(--muted);max-width:40ch;margin:24px 0 32px}
+.cta{display:flex;gap:12px;flex-wrap:wrap}
+
+.perks{display:flex;gap:32px;flex-wrap:wrap;margin-top:56px;padding-top:24px;border-top:1px solid var(--line);color:var(--muted);font-size:15px}
+.perks b{color:var(--text);font-weight:600}
+/* servicios */
+.cats{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:0 56px}
+.srv{display:flex;gap:16px;justify-content:space-between;padding:22px 0;border-bottom:1px solid var(--line)}
+.srv h3{font-size:26px;margin-bottom:6px}.srv p{margin:0;color:var(--muted);font-size:15px;max-width:44ch}
+.tag{align-self:flex-start;font-size:13px;color:var(--accent-t);border:1px solid var(--line);border-radius:99px;padding:2px 12px;white-space:nowrap}
+/* locales */
+.locs{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px}
+.loc{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:24px;display:flex;flex-direction:column;gap:4px}
+.loc h3{font-size:24px}.loc span{color:var(--muted);font-size:15px;margin-bottom:16px}
+.loc a{margin-top:auto;font-size:15px;color:var(--accent-t);text-decoration:none;font-weight:600}
+/* booking */
+#reservas{background:var(--surface);border-block:1px solid var(--line)}
+.book{display:grid;grid-template-columns:1fr 320px;gap:32px;align-items:start}
+.steps{display:flex;gap:8px;margin-bottom:28px}
+.steps div{flex:1;font-size:14px;color:var(--muted);padding-bottom:10px;border-bottom:3px solid var(--line)}
+.steps .on{color:var(--text);border-color:var(--accent)}.steps .done{border-color:var(--ok);color:var(--text)}
+.panel{background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:28px;min-height:380px}
+.panel h3{font-size:30px;margin-bottom:20px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:12px}
+.opt{text-align:left;background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:16px;cursor:pointer;min-height:64px}
+.opt:hover{border-color:var(--muted)}
+.opt[aria-pressed=true]{border-color:var(--accent);background:rgba(201,161,90,.12)}
+.opt b{display:block;font-weight:600}.opt small{color:var(--muted)}
+.days{display:flex;gap:8px;overflow-x:auto;padding-bottom:8px;margin-bottom:20px}
+.day{flex:0 0 68px;text-align:center;padding:10px 0}
+.day b{font:700 24px 'Barlow Condensed',sans-serif;display:block}
+.lbl{display:block;color:var(--muted);font-size:14px;margin:20px 0 8px}
+.times{display:grid;grid-template-columns:repeat(auto-fill,minmax(84px,1fr));gap:8px}
+.times .opt{padding:10px;text-align:center;min-height:44px}
+.times .opt[disabled]{opacity:.3;text-decoration:line-through;cursor:not-allowed}
+.fields{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.fields label{display:flex;flex-direction:column;gap:6px;font-size:14px;color:var(--muted)}
+.fields .full{grid-column:1/-1}
+input,select{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:0 14px;min-height:48px;color:var(--text)}
+input[aria-invalid=true]{border-color:#d9776a}
+.err{color:#e59a8f;font-size:13px;min-height:1em}
+.check{flex-direction:row!important;align-items:center;gap:10px!important}.check input{min-height:0;width:20px;height:20px;accent-color:var(--accent)}
+.nav-btns{display:flex;justify-content:space-between;margin-top:28px;gap:12px}
+.sum{position:sticky;top:90px;background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:24px}
+.sum h3{font-size:24px;margin-bottom:16px}
+.sum dl{margin:0}.sum dt{font-size:13px;color:var(--muted)}.sum dd{margin:0 0 14px;font-weight:500}.sum dd.empty{color:var(--line)}
+.ok{text-align:center;padding:48px 0}.ok .tick{width:64px;height:64px;border-radius:50%;background:var(--ok);color:#0b1a10;display:grid;place-items:center;font-size:32px;margin:0 auto 20px}
+.ok p{color:var(--muted);max-width:44ch;margin:12px auto 24px}
+footer{padding:40px 0;color:var(--muted);font-size:14px}
+.maps{display:grid;grid-template-columns:300px 1fr;gap:24px;align-items:start}
+.mtabs{display:flex;flex-direction:column;gap:8px}
+.mbox{border:1px solid var(--line);border-radius:8px;overflow:hidden;min-height:440px;background:var(--surface)}
+.mbox iframe{width:100%;height:440px;border:0;display:block}
+.minfo{display:flex;gap:12px;flex-wrap:wrap;margin-top:16px}
+footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
+@media(max-width:860px){
+ .nav ul{display:none;position:absolute;top:68px;left:0;right:0;flex-direction:column;gap:0;background:var(--bg);border-bottom:1px solid var(--line);padding:8px 20px}header.open .nav ul{display:flex}.nav ul a{display:block;padding:14px 0;font-size:17px}.menu{display:grid}.panel{padding:20px}.maps{grid-template-columns:1fr}.mtabs{flex-direction:row;overflow-x:auto;padding-bottom:6px}.mtabs .opt{flex:0 0 190px}.mbox,.mbox iframe{min-height:320px;height:320px}.hero{min-height:560px}
+ .book{grid-template-columns:1fr}.sum{position:static;order:-1}.fields{grid-template-columns:1fr}
+ section{padding:64px 0}.steps div{font-size:12px}
+}
+@media(max-width:480px){.nav .btn{padding:0 12px;font-size:14px}.logo{font-size:22px}.actions{gap:8px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<header><div class="wrap nav">
+ <a class="logo" href="#top">THE CAVE</a>
+ <ul><li><a href="#servicios">Servicios</a></li><li><a href="#locales">Locales</a></li><li><a href="#ubicaciones">Ubicaciones</a></li><li><a href="#reservas">Reservar</a></li><li><a href="#">Trabaja con nosotros</a></li></ul>
+ <div class="actions"><button class="ib" id="tb" type="button" aria-label="Cambiar tema"></button><a class="btn" href="#reservas">Reservar silla</a><button class="ib menu" id="mb" type="button" aria-label="Menú" aria-expanded="false">☰</button></div>
+</div></header>
+
+<main id="top">
+<section class="hero"><div class="wrap">
+ <div>
+  <h1>Más que una barbería</h1>
+  <p>Cortes precisos, toallas calientes y un trato de caballeros para caballeros. Reserva online y recibe 10% de descuento.</p>
+  <div class="cta"><a class="btn" href="#reservas">Reservar mi silla</a><a class="btn ghost" href="#servicios">Ver servicios</a></div>
+ </div>
+ 
+ <div class="perks" style="grid-column:1/-1">
+  <span><b>Barberos profesionales</b> · expertos en tu estilo</span>
+  <span><b>Cita sin costo</b> · o lista de espera en el local</span>
+  <span><b>5 locales</b> en Quito</span>
+ </div>
+</div></section>
+
+<section id="servicios"><div class="wrap">
+ <h2>Servicios</h2><p class="lead">Cabello, barba y cuidado personal en una sola visita.</p>
+ <div class="cats" id="svc"></div>
+</div></section>
+
+<section id="locales" style="background:var(--surface);border-block:1px solid var(--line)"><div class="wrap">
+ <h2>Elige tu Cave</h2><p class="lead">Cinco locales. Escríbenos por WhatsApp o reserva directo.</p>
+ <div class="locs" id="locs"></div>
+</div></section>
+
+<section id="ubicaciones"><div class="wrap">
+ <h2>Ubicaciones</h2><p class="lead">Encuentra tu Cave más cercana y mira cómo llegar.</p>
+ <div class="maps"><div class="mtabs" id="mt" role="tablist" aria-label="Sedes"></div>
+  <div><div class="mbox"><iframe id="mf" title="Mapa" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe></div><div class="minfo" id="mi"></div></div></div>
+</div></section>
+
+<section id="reservas"><div class="wrap">
+ <h2>Reserva tu silla</h2><p class="lead">Cuatro pasos, menos de un minuto.</p>
+ <div class="book">
+  <div>
+   <div class="steps" id="steps"></div>
+   <div class="panel" id="panel"></div>
+  </div>
+  <aside class="sum" aria-live="polite"><h3>Tu cita</h3><dl id="sum"></dl></aside>
+ </div>
+</div></section>
+</main>
+
+<footer><div class="wrap"><span>© The Cave. Todos los derechos reservados.</span><span>Propuesta de rediseño · borrador</span></div></footer>
+
+<script>
+const SERV=[
+ ['Corte','Cabello','Corte, lavado y peinado. Cejas, vello nasal y orejas.'],
+ ['Afeitado','Cabello','A máquina o con navaja. Toallas con aromaterapia.'],
+ ['Corte de barba','Barba','Corte y delineado a máquina y tijera, con tónicos.'],
+ ['Retoque de barba','Barba','Alineación y delineado con tónicos.'],
+ ['Mascarilla negra','Limpieza','Toalla caliente, exfoliante, mascarilla e hidratante.'],
+ ['Spa manos','Spa','Manicure express o The Cave, con mascarilla y masaje.'],
+ ['Spa pies','Spa','Pedicure express o The Cave: corte, limado y exfoliación.']];
+const LOCS=[['Scala Shopping','Subsuelo 2','593939142905'],['El Jardín','Piso 0, local 4','593983076828'],['Paseo San Francisco','Piso 3','593993109376'],['Riocentro Shopping','Subsuelo 1','593983632984'],['CCI','Primer piso alto, diagonal a Movistar','593984589827']];
+const BARB=['Sin preferencia','Barbero específico'];
+// Datos de ejemplo por sede (índice = posición en LOCS). Luego vendrán del sistema de citas: cada barbero aparecerá en la sede donde esté asignado ese día.
+const BARBEROS={0:[['Carlos M.','Fijo'],['Andrés P.','Fijo'],['Diego R.','Rotativo']],1:[['Luis T.','Fijo'],['Marco V.','Fijo'],['Diego R.','Rotativo']],2:[['Esteban A.','Fijo'],['Juan S.','Fijo'],['Kevin L.','Rotativo']],3:[['Pablo C.','Fijo'],['Santiago G.','Fijo'],['Kevin L.','Rotativo']],4:[['Mateo F.','Fijo'],['Daniel O.','Fijo']]};
+const DRINKS=['Cerveza artesanal','Coca Cola','Sprite','Fanta','Agua','No, gracias'];
+const TIMES=[];for(let h=10;h<19;h++){TIMES.push(h+':00',h+':30')}TIMES.push('19:00','19:15');
+const $=s=>document.querySelector(s);
+$('#svc').innerHTML=SERV.map(s=>`<div class="srv"><div><h3>${s[0]}</h3><p>${s[2]}</p></div><span class="tag">${s[1]}</span></div>`).join('');
+$('#locs').innerHTML=LOCS.map((l,i)=>`<div class="loc"><h3>${l[0]}</h3><span>${l[1]}</span><a href="https://wa.me/${l[2]}">Escribir por WhatsApp</a></div>`).join('');
+
+const S={step:0,loc:null,svc:[],barber:'Sin preferencia',barberName:'',date:null,time:null,name:'',id:'',email:'',tel:'',drink:'No, gracias',terms:false,done:false};
+const NAMES=['Sucursal','Servicios','Fecha y hora','Tus datos'];
+const TZ='America/Guayaquil';
+function gye(){return Object.fromEntries(new Intl.DateTimeFormat('en-CA',{timeZone:TZ,hourCycle:'h23',year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit'}).formatToParts(new Date()).map(x=>[x.type,x.value]))}
+const nowMin=()=>{const p=gye();return +p.hour*60+ +p.minute};
+const days=(()=>{const p=gye();return [...Array(10)].map((_,i)=>new Date(+p.year,+p.month-1,+p.day+i))})();
+const dn=['dom','lun','mar','mié','jue','vie','sáb'],mn=['ene','feb','mar','abr','may','jun','jul','ago','sep','oct','nov','dic'];
+const fmt=d=>`${dn[d.getDay()]} ${d.getDate()} ${mn[d.getMonth()]}`;
+// Horas ocupadas simuladas (el panel de administración las vendrá del backend)
+const bz=(n,d,t)=>((d.getDate()*7+TIMES.indexOf(t)*3+n.length*5+n.charCodeAt(0))%4)===0;
+const pool=()=>S.barber=='Sin preferencia'?(BARBEROS[S.loc]||[]).map(b=>b[0]):[S.barberName];
+const free=(d,t)=>pool().filter(n=>!bz(n,d,t));
+const tooSoon=(i,t)=>{if(i!==0)return false;const[h,m]=t.split(':');return +h*60+ +m<nowMin()+60};
+
+function ok(){
+ if(S.step==0)return S.loc!==null;
+ if(S.step==1)return S.svc.length>0&&(S.barber=='Sin preferencia'||S.barberName.trim());
+ if(S.step==2)return S.date!==null&&S.time;
+ return S.name.trim()&&/^\d{10,13}$/.test(S.id)&&/\S+@\S+\.\S+/.test(S.email)&&/^\+?\d{9,13}$/.test(S.tel.replace(/\s/g,''))&&S.terms;
+}
+function summary(){
+ const r=(k,v)=>`<dt>${k}</dt><dd class="${v?'':'empty'}">${v||'—'}</dd>`;
+ $('#sum').innerHTML=r('Sucursal',S.loc!==null&&LOCS[S.loc][0])+r('Servicios',S.svc.join(', '))+r('Barbero',S.step>0||S.barberName?(S.barber=='Sin preferencia'?'Sin preferencia':S.barberName):'')+r('Fecha y hora',S.date!==null&&S.time?`${fmt(days[S.date])}, ${S.time}`:'')+r('Descuento',S.date!==null&&S.time?'10% por reservar online':'');
+}
+function steps(){$('#steps').innerHTML=NAMES.map((n,i)=>`<div class="${S.done||i<S.step?'done':i==S.step?'on':''}">${i+1}. ${n}</div>`).join('')}
+function opt(label,sub,on,act){return `<button class="opt" aria-pressed="${on}" onclick="${act}"><b>${label}</b>${sub?`<small>${sub}</small>`:''}</button>`}
+
+function render(){
+ steps();summary();const p=$('#panel');let h='';
+ if(S.done){p.innerHTML=`<div class="ok"><div class="tick">✓</div><h3>Cita confirmada</h3><p>${S.name.split(' ')[0]}, te esperamos en ${LOCS[S.loc][0]} el ${fmt(days[S.date])} a las ${S.time} con ${S.assigned}, con tu 10% de descuento. Enviamos el detalle a ${S.email}.</p><button class="btn ghost" onclick="reset()">Agendar otra cita</button></div>`;return}
+ if(S.step==0){
+  h=`<h3>¿A qué Cave vas?</h3><div class="grid">${LOCS.map((l,i)=>opt(l[0],l[1],S.loc===i,`S.loc=${i};S.barberName='';S.time=null;render()`)).join('')}</div>`;
+ }else if(S.step==1){
+  h=`<h3>¿Qué te haremos?</h3><div class="grid">${SERV.map(s=>opt(s[0],s[1],S.svc.includes(s[0]),`tog('${s[0]}')`)).join('')}</div>
+  <span class="lbl">Barbero</span><div class="grid">${BARB.map(b=>opt(b,'',S.barber==b,`pickB('${b}')`)).join('')}</div>
+  ${S.barber!='Sin preferencia'?`<span class="lbl">Barberos en ${LOCS[S.loc][0]}</span><div class="grid">${(BARBEROS[S.loc]||[]).map(b=>opt(b[0],b[1],S.barberName==b[0],`S.barberName='${b[0]}';S.time=null;render()`)).join('')}</div><p class="lead" style="margin:12px 0 0;font-size:14px">Algunos barberos rotan entre sedes. Si el tuyo no está disponible, te avisaremos.</p>`:''}`;
+ }else if(S.step==2){
+  h=`<h3>Elige fecha y hora</h3><div class="days">${days.map((d,i)=>`<button class="opt day" aria-pressed="${S.date===i}" onclick="S.date=${i};S.time=null;render()"><small>${dn[d.getDay()]}</small><b>${d.getDate()}</b><small>${mn[d.getMonth()]}</small></button>`).join('')}</div>
+  ${S.date===null?'<p class="lead">Selecciona un día para ver los horarios disponibles.</p>':`<div class="times">${TIMES.map(t=>`<button class="opt" ${tooSoon(S.date,t)||!free(days[S.date],t).length?'disabled':''} aria-pressed="${S.time===t}" onclick="S.time='${t}';render()">${t}</button>`).join('')}</div><p class="lead" style="margin:16px 0 0;font-size:14px">Las citas online se reservan con al menos 1 hora de anticipación (hora de Ecuador) e incluyen 10% de descuento. Si llegas sin cita, regístrate en el local: ese turno no tiene descuento. Última cita: 19:15. ${S.barber=='Sin preferencia'?'Solo mostramos horas con al menos un barbero libre.':''}</p>`}`;
+ }else{
+  const f=(k,l,t='text',ph='')=>`<label>${l}<input type="${t}" value="${S[k]}" placeholder="${ph}" oninput="S.${k}=this.value;upd()"></label>`;
+  h=`<h3>Tus datos</h3><div class="fields">${f('name','Nombre completo')}${f('id','Cédula','text','10 dígitos')}${f('email','Email','email')}${f('tel','Teléfono','tel','0999999999')}
+  <label class="full">Bebida de cortesía<select onchange="S.drink=this.value">${DRINKS.map(d=>`<option ${d==S.drink?'selected':''}>${d}</option>`).join('')}</select></label>
+  <label class="full check"><input type="checkbox" ${S.terms?'checked':''} onchange="S.terms=this.checked;upd()">Acepto los términos y condiciones</label></div>`;
+ }
+ h+=`<div class="nav-btns"><button class="btn ghost" ${S.step?'':'style="visibility:hidden"'} onclick="S.step--;render()">Atrás</button><button class="btn" id="nx" ${ok()?'':'disabled'} onclick="next()">${S.step==3?'Confirmar cita':'Continuar'}</button></div>`;
+ p.innerHTML=h;
+}
+function pickB(b){S.barber=b;S.time=null;if(b=='Sin preferencia')S.barberName='';render()}
+function upd(){const b=$('#nx');if(b)b.disabled=!ok();summary()}
+function tog(s){S.svc=S.svc.includes(s)?S.svc.filter(x=>x!=s):[...S.svc,s];render()}
+function next(){if(!ok())return;if(S.step<3)S.step++;else{S.assigned=S.barber=='Sin preferencia'?free(days[S.date],S.time)[0]:S.barberName;S.done=true}render();$('#reservas').scrollIntoView()}
+function reset(){Object.assign(S,{step:0,loc:null,svc:[],barber:'Sin preferencia',barberName:'',date:null,time:null,done:false,terms:false});render()}
+render();
+const MAPQ=['SCALA SHOPPING','MALL EL JARDIN','paseo san francisco','Riocentro Shopping Quito','CCI, Quito'];
+function showMap(i){
+ $('#mt').innerHTML=LOCS.map((l,k)=>`<button class="opt" role="tab" aria-selected="${k==i}" aria-pressed="${k==i}" onclick="showMap(${k})"><b>${l[0]}</b><small>${l[1]}</small></button>`).join('');
+ const q=encodeURIComponent(MAPQ[i]);
+ $('#mf').title='Mapa de '+LOCS[i][0];
+ $('#mf').src=`https://maps.google.com/maps?q=${q}&t=m&z=15&output=embed&iwloc=near`;
+ $('#mi').innerHTML=`<a class="btn" href="https://www.google.com/maps/search/?api=1&query=${q}" target="_blank" rel="noopener">Cómo llegar</a><a class="btn ghost" href="https://wa.me/${LOCS[i][2]}" target="_blank" rel="noopener">WhatsApp</a><a class="btn ghost" href="#reservas" onclick="S.loc=${i};S.step=0;S.done=false;S.barberName='';S.time=null;render()">Reservar aquí</a>`;
+}
+showMap(0);
+const root=document.documentElement,tb=$('#tb');
+let th;try{th=localStorage.getItem('th')}catch(e){}
+function setTh(t){root.dataset.theme=t;tb.textContent=t=='dark'?'☀':'☾';tb.setAttribute('aria-label',t=='dark'?'Cambiar a modo claro':'Cambiar a modo oscuro')}
+setTh(th||(matchMedia('(prefers-color-scheme: light)').matches?'light':'dark'));
+tb.onclick=()=>{const t=root.dataset.theme=='dark'?'light':'dark';setTh(t);try{localStorage.setItem('th',t)}catch(e){}};
+$('#mb').onclick=()=>{const h=$('header');h.classList.toggle('open');$('#mb').setAttribute('aria-expanded',h.classList.contains('open'))};
+document.querySelectorAll('.nav ul a').forEach(a=>a.onclick=()=>$('header').classList.remove('open'));
+</script>
+</body>
+</html>
