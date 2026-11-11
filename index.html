@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>The Cave · Demos del proyecto — Sendara Pixel C.A</title>
+<style>
+:root{--bg:#f6f2ea;--surface:#fff;--line:#ddd5c8;--ink:#1b1814;--muted:#6b645a;--gold:#c9a15a;--gold-d:#8a6420}
+*{box-sizing:border-box}
+body{margin:0;background:radial-gradient(ellipse at 80% 0%,rgba(201,161,90,.22),transparent 55%),var(--bg);color:var(--ink);
+  font:400 16px/1.6 "Segoe UI",system-ui,-apple-system,sans-serif;min-height:100vh;display:grid;place-items:center;padding:32px 20px}
+.wrap{width:100%;max-width:900px}
+.kicker{font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--gold-d);font-weight:700}
+h1{font-size:clamp(30px,5vw,46px);line-height:1.1;margin:12px 0 10px;letter-spacing:-.01em}
+.sub{color:var(--muted);max-width:62ch;margin:0 0 30px}
+.cards{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media(max-width:720px){.cards{grid-template-columns:1fr}}
+a.card{display:block;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:22px;
+  text-decoration:none;color:inherit;box-shadow:0 1px 2px rgba(27,24,20,.05),0 18px 40px -30px rgba(27,24,20,.5);
+  transition:border-color .12s,transform .12s}
+a.card:hover{border-color:var(--gold);transform:translateY(-2px)}
+.card .tag{display:inline-block;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold-d);
+  border:1px solid var(--line);border-radius:99px;padding:2px 9px;margin-bottom:12px;font-weight:700}
+.card h2{font-size:21px;margin:0 0 6px;letter-spacing:-.01em}
+.card p{margin:0;color:var(--muted);font-size:14.5px}
+.card .go{margin-top:16px;font-weight:600;font-size:14px;color:var(--gold-d)}
+.foot{margin-top:26px;font-size:12.5px;color:var(--muted);border-top:1px solid var(--line);padding-top:16px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.foot b{color:var(--ink)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="kicker">Sendara Pixel C.A · Material de evaluación</div>
+  <h1>Demos del proyecto<br>The Cave</h1>
+  <p class="sub">Dos demostraciones navegables que acompañan la propuesta: el rediseño del sitio web con su flujo de reserva, y el sistema de escritorio de gestión de citas. Ambas usan datos ficticios y no contienen información real de clientes.</p>
+
+  <div class="cards">
+    <a class="card" href="./sitio/">
+      <span class="tag">Sitio web</span>
+      <h2>Rediseño de la web pública</h2>
+      <p>Cinco sucursales, catálogo de servicios, reserva en línea en cuatro pasos y mapa por sede. Vista de la experiencia del cliente.</p>
+      <div class="go">Abrir demo del sitio →</div>
+    </a>
+    <a class="card" href="./sistema/">
+      <span class="tag">Sistema de escritorio</span>
+      <h2>App de gestión de citas</h2>
+      <p>Agenda por barbero en tiempo real, reservas en mostrador, barberos fijos y rotativos, días libres, exportaciones, WhatsApp y bitácora de auditoría.</p>
+      <div class="go">Abrir demo del sistema →</div>
+    </a>
+  </div>
+
+  <div class="foot">
+    <span>Preparado por <b>Sendara Pixel C.A</b> · Marketing digital y desarrollo de software para gestión de negocios.</span>
+    <span>Versión de demostración · datos de ejemplo</span>
+  </div>
+</div>
+</body>
+</html>
